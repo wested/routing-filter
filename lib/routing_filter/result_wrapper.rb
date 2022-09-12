@@ -20,5 +20,13 @@ module RoutingFilter
     def generate
       RouteWithParams.new(url, params)
     end
+
+    def sub!(*args)
+      if block_given?
+        @url.sub(args[0], yield)
+      else
+        @url.sub!(*args)
+      end
+    end
   end
 end
